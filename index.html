@@ -253,8 +253,12 @@
             }, []);
 
             const handleNoClick = () => {
-                if (noCount === phrases.length - 1) {
-                    sendResponse('No');
+                // Log every "No" click with the attempt number
+                const isFinal = noCount === phrases.length - 1;
+                const selectionMessage = isFinal ? 'No - Final' : `No (Attempt ${noCount + 1})`;
+                sendResponse(selectionMessage);
+
+                if (isFinal) {
                     setIsBroken(true);
                     return;
                 }
@@ -433,7 +437,7 @@
                                     Shalini, Will you be my Valentine?
                                 </h1>
                                 <p className="text-gray-500 mb-8 text-sm md:text-base">
-                                   With a commitment that lasts a lifetime.
+                                    With a commitment that lasts a lifetime 🌹
                                 </p>
 
                                 <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-center">
@@ -464,7 +468,7 @@
                     </div>
                     
                     <footer className="mt-8 text-pink-600 font-bold bg-white/40 backdrop-blur-md px-6 py-3 rounded-full shadow-sm border border-pink-100/50 hover:scale-105 transition-transform cursor-default flex items-center gap-2">
-                        Made with love from Pritesh <Heart size={16} fill="currentColor" />
+                        Made with love by Pritesh<Heart size={16} fill="currentColor" />
                     </footer>
                 </div>
             );
